@@ -69,7 +69,6 @@ class SumoBot:
         # Set initial state
         self.state = STARTUP
 
-
     def run(self):
         """
         Sumo bot main execution loop.
