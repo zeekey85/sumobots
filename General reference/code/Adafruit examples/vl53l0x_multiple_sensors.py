@@ -9,18 +9,18 @@ more current than the on-board 3V regulator can output (typical current consumpt
 active range readings is about 19 mA per sensor).
 """
 import time
-import board
+import board, busio
 from digitalio import DigitalInOut
 from adafruit_vl53l0x import VL53L0X
 
 # declare the singleton variable for the default I2C bus
-i2c = board.I2C()  # uses board.SCL and board.SDA
+i2c = busio.I2C(GP3, GP2)  # uses board.SCL and board.SDA
 # i2c = board.STEMMA_I2C()  # For using the built-in STEMMA QT connector on a microcontroller
 
 # declare the digital output pins connected to the "SHDN" pin on each VL53L0X sensor
 xshut = [
-    DigitalInOut(board.D7),
-    DigitalInOut(board.D9),
+    DigitalInOut(board.D4),
+    DigitalInOut(board.D6),
     # add more VL53L0X sensors by defining their SHDN pins here
 ]
 
