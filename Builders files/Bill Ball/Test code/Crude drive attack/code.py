@@ -108,29 +108,31 @@ i2c2.deinit()
 Motor 1 is the left motor
 Motor 2 is the right motor
 If your robot does move in the direction you expect just
-switch the wires going to MA and MB for that motor on the maker pi board
+switch the wires going to MA and MB for that motor on the MakerPi board.
+
+MakerPi connections to sensors (ToF is VL53L0X sensor):
 
 Grove 2
-VCC -> ToF Right VCC
 GND -> ToF Right GND
+3V3 -> ToF Right VIN
 GP2 -> ToF Right SDA
 GP3  -> ToF Right SCL
 
 Grove 3
-VCC -> IR Left VCC
-GND ->  IR Left GND
+GND -> IR Left GND
+3V3 ->  IR Left VIN
 GP4 -> ToF Left Xshut
 GP5 -> IR Left DO
 
 Grove 4
-VCC -> ToF Left VCC 
-GND -> ToF Left GND
+GND -> ToF Left GND 
+3V3 -> ToF Left VCC
 GP16 -> ToF Left SDA
 GP17 -> ToF Left SCL
 
 Grove 5
-VCC -> IR Right VCC
 GND -> IR Right GND
+3V3 -> IR Right VCC
 GP6 -> ToF Right Xshut 
 GP26 -> IR Right DO
 
