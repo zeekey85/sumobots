@@ -1,7 +1,7 @@
 # PowerShell script to write code files to MakerPi. Run after code changes to flash them to the board.
 
 # Source directory path on the C drive. Set your own path here.
-$sourceDirectory = "C:\Users\graha\Development\sumobot\sumobots\code\sumo\*"
+$sourceDirectory = "C:\Users\graha\Development\sumobot\sumobots\Builders files\Graham_Home\*.py"
 
 # Destination folder. If your MakerPi is mounted under a different drive, enter it here.
 $destinationDirectory = "E:\"
