@@ -92,9 +92,9 @@ class SumoBot:
             # Turn to the left for 0.5 seconds
             self.drive(left_speed=0.5, right_speed=-0.5, duration=0.25)
 
-    #
+    # ************************
     # Utility methods below
-    #
+    # ************************
 
     def __init__(self):
         """
