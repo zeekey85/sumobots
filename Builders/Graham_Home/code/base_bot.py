@@ -10,7 +10,7 @@ import neopixel
 import pwmio
 from adafruit_vl53l0x import VL53L0X
 from adafruit_motor.motor import DCMotor
-from .melodies import note_frequencies
+from melodies import note_frequencies
 import keypad
 
 # Pin connected to piezo buzzer
@@ -53,7 +53,7 @@ MAX_DISTANCE = 770
 class SumoBotBase:
     """
     Base implementation for a sumo wrestling robot. Contains the logic for
-    robot initialization and control, but intentionally has no fight() routine.
+    robot initialization and control, but intentionally has no fighting routine.
     To use this class to control your sumo bot, create your own subclass of
     this class and define a fight() method for it.
     See the GrahamSumoBot class in the code.py file for an example.
