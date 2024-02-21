@@ -2,6 +2,7 @@
 
 # Source directory path on the C drive. Set your own path here.
 $sourceDirectory = "C:\Users\graha\Development\sumobot\sumobots\Builders\Graham_Home\code\*"
+
 # Destination folder. If your MakerPi is mounted under a different drive, enter it here.
 $destinationDirectory = "E:\"
 
