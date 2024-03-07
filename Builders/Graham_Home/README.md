@@ -4,4 +4,5 @@
 3. MakerPi NeoPixels will light up red. Hold the GP20 button and release it (NeoPixels will turn yellow when button is held and green when button is released).
 4. You are now in sumo mode! Robot will seek out an opponent and attempt to shove it out of the ring. 
 
-You can run `copy-code.ps1` on a Windows computer to copy the code files to your MakerPi, just remember to update the `copy-code.ps1` script with the correct path to the code directory and the correct drive letter for the MakerPi.
+You can run `copy-code.ps1` on a Windows computer to copy 
+the code files to your MakerPi, just remember to update the `copy-code.ps1` script with the correct path to the code directory and the correct drive letter for the MakerPi.
