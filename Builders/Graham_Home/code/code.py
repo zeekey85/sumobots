@@ -1,6 +1,7 @@
 from time import sleep
 
 from base_bot import SumoBotBase
+from settings import *
 
 
 class GrahamSumoBot(SumoBotBase):
@@ -46,7 +47,8 @@ class GrahamSumoBot(SumoBotBase):
         if self.enemy_in_range_right() and self.enemy_in_range_left():
             # Charge!
             print("Charging boldly forward")
-            self.drive(right_speed=1, left_speed=1)
+            # TODO: Full speed lifts up edge sensors & gives false positive for edge - fix me
+            self.drive(right_speed=0.7, left_speed=0.7)
             while (
                 self.enemy_in_range_right()
                 and self.enemy_in_range_left()
@@ -56,22 +58,25 @@ class GrahamSumoBot(SumoBotBase):
             self.stop()
 
         # Check for enemy to right
-        elif self.enemy_in_range_right():
-            print("Looking right")
-            # Turn to the right for 0.5 seconds
-            self.drive(left_speed=0.2, right_speed=-0.2, duration=0.25)
-
-        # Check for enemy to left
-        elif self.enemy_in_range_left():
-            print("Looking left")
-            # Turn to the left for 0.5 seconds
-            self.drive(left_speed=-0.2, right_speed=0.2, duration=0.25)
-
-        # Spin and look for enemy
         else:
-            # Turn to the left for 0.5 seconds
-            print("Spinning")
-            self.drive(left_speed=-0.2, right_speed=0.2, duration=0.25)
+            right_distance = self.right_distance()
+            left_distance = self.left_distance()
+            if right_distance < MAX_DISTANCE:
+                print("Looking right")
+                # Turn to the right - set turn duration inversely proportional to enemy distance
+                self.drive(left_speed=0.5, right_speed=-0.5, duration=0.4*((MAX_DISTANCE-right_distance)/MAX_DISTANCE))
+
+            # Check for enemy to left
+            elif left_distance < MAX_DISTANCE:
+                print("Looking left")
+                # Turn to the left - set turn duration inversely proportional to enemy distance
+                self.drive(left_speed=-0.5, right_speed=0.5, duration=0.4*((MAX_DISTANCE-left_distance)/MAX_DISTANCE))
+
+            # Spin and look for enemy
+            else:
+                # Turn to the left
+                print("Spinning")
+                self.drive(left_speed=-0.5, right_speed=0.5, duration=0.25)
 
     # def enemy_in_range_right(self):
     #     return False

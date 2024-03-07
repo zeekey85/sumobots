@@ -171,13 +171,19 @@ class SumoBotBase:
         """
         Returns the distance measurement taken by the right side TOF sensor.
         """
-        return max(self.tof_right.range, self.tof_right.range)
+        reading_1 = self.tof_right.range
+        sleep(0.05)
+        reading_2 = self.tof_right.range
+        return max(reading_1, reading_2)
 
     def left_distance(self):
         """
         Returns the distance measurement taken by the left side TOF sensor.
         """
-        return max(self.tof_left.range, self.tof_left.range)
+        reading_1 = self.tof_left.range
+        sleep(0.05)
+        reading_2 = self.tof_left.range
+        return max(reading_1, reading_2)
 
     def enemy_in_range_right(self):
         """

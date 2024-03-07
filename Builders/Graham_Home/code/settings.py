@@ -27,4 +27,4 @@ I2C_LEFT_TOGGLE_PIN = board.GP4
 I2C_RIGHT_TOGGLE_PIN = board.GP6
 
 # Maximum enemy targeting range
-MAX_DISTANCE = 350 #770
+MAX_DISTANCE = 300 #770
