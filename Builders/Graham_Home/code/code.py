@@ -80,8 +80,4 @@ class GrahamSumoBot(SumoBotBase):
     #     return False
 
 if __name__ == "__main__":
-    bot = GrahamSumoBot()
-    while 1:
-        print(bot.left_edge_detected())
-        sleep(0.5)
-    #GrahamSumoBot().run()
+    GrahamSumoBot().run()
