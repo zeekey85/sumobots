@@ -4,7 +4,7 @@ An illustrated complete parts list is included in the parts preparation.pdf docu
 
 Stl files for 3D printing the four body parts are included.
 
-Illustrated assembly instructions can be found in the assembly instructions.pf file.
+Illustrated assembly instructions can be found in the assembly instructions.pdf file.
 
 The Maker pi board should be running CircuitPython (it ships this way) and will need the following software installed:
 
