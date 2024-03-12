@@ -112,28 +112,28 @@ switch the wires going to MA and MB for that motor on the MakerPi board.
 
 MakerPi connections to sensors (ToF is VL53L0X sensor):
 
-Grove 2
-GND -> ToF Right GND
-3V3 -> ToF Right VIN
-GP2 -> ToF Right SDA
-GP3  -> ToF Right SCL
+Grove 2 
+GND -> Right ToF GND
+3V3 -> Right ToF VIN
+GP2 -> Right ToF SDA
+GP3 -> Right ToF SCL
 
 Grove 3
-GND -> IR Left GND
-3V3 ->  IR Left VIN
-GP4 -> ToF Left Xshut
-GP5 -> IR Left DO
+GND -> Left edge detection GND
+3V3 -> Left edge detection VIN
+GP4 -> Left ToF XSHUT
+GP5 -> Left IR DO
 
 Grove 4
-GND -> ToF Left GND 
-3V3 -> ToF Left VCC
-GP16 -> ToF Left SDA
-GP17 -> ToF Left SCL
+GND -> Left ToF GND 
+3V3 -> Left ToF VCC
+GP16 -> Left ToF SDA
+GP17 -> Left ToF SCL
 
 Grove 5
-GND -> IR Right GND
-3V3 -> IR Right VCC
-GP6 -> ToF Right Xshut 
-GP26 -> IR Right DO
+GND -> Right edge detection GND
+3V3 -> Right edge detection VCC
+GP6 -> Right ToF XSHUT 
+GP26 -> Right IR DO
 
 """
