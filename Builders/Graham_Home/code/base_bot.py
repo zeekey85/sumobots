@@ -3,8 +3,7 @@
 # *************************************************
 import digitalio
 import simpleio
-import time
-import board
+from time import sleep
 import busio
 import neopixel
 import pwmio
@@ -12,30 +11,8 @@ from adafruit_vl53l0x import VL53L0X
 from adafruit_motor.motor import DCMotor
 from melodies import note_frequencies
 import keypad
+from settings import *
 
-# Pin connected to piezo buzzer
-PIEZO_PIN = board.GP22
-
-# Pins connected to DC motors (swap variable names if your motors are connected differently)
-RIGHT_MOTOR_PIN_A = board.GP8
-RIGHT_MOTOR_PIN_B = board.GP9
-LEFT_MOTOR_PIN_A = board.GP10
-LEFT_MOTOR_PIN_B = board.GP11
-
-# Pin connected to NeoPixels
-NEO_PIXEL_PIN = board.GP18
-
-# Pins connected to buttons
-BUTTON_1_PIN = board.GP20
-BUTTON_2_PIN = board.GP21
-
-# Pins connected to TOF sensors
-LEFT_EDGE_SENSOR_PIN = board.GP5
-RIGHT_EDGE_SENSOR_PIN = board.GP26
-TOF_LEFT_I2C_PINS = (board.GP17, board.GP16)
-TOF_RIGHT_I2C_PINS = (board.GP3, board.GP2)
-I2C_LEFT_TOGGLE_PIN = board.GP4
-I2C_RIGHT_TOGGLE_PIN = board.GP6
 
 # Robot states
 STARTUP = 0  # Startup sequence
@@ -45,10 +22,6 @@ COUNTDOWN = 3  # Counting down to fight
 FIGHTING = 4  # Fight mode
 LOST = 5  # Bot has lost the match
 WON = 6  # Bot has won the match
-
-# Maximum enemy targeting range
-MAX_DISTANCE = 770
-
 
 class SumoBotBase:
     """
@@ -179,9 +152,7 @@ class SumoBotBase:
         set_motor_speed(self.motor_left, left_speed)
         set_motor_speed(self.motor_right, right_speed)
         if duration:
-            end_time = time.time() + duration
-            while time.time() < end_time:
-                pass
+            sleep(duration)
             self.stop()
 
     def left_edge_detected(self):
@@ -200,13 +171,19 @@ class SumoBotBase:
         """
         Returns the distance measurement taken by the right side TOF sensor.
         """
-        return max(self.tof_right.range, self.tof_right.range)
+        reading_1 = self.tof_right.range
+        sleep(0.05)
+        reading_2 = self.tof_right.range
+        return max(reading_1, reading_2)
 
     def left_distance(self):
         """
         Returns the distance measurement taken by the left side TOF sensor.
         """
-        return max(self.tof_left.range, self.tof_left.range)
+        reading_1 = self.tof_left.range
+        sleep(0.05)
+        reading_2 = self.tof_left.range
+        return max(reading_1, reading_2)
 
     def enemy_in_range_right(self):
         """

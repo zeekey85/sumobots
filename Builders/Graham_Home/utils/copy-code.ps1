@@ -4,7 +4,7 @@
 $sourceDirectory = "C:\Users\graha\Development\sumobot\sumobots\Builders\Graham_Home\code\*"
 
 # Destination folder. If your MakerPi is mounted under a different drive, enter it here.
-$destinationDirectory = "E:\"
+$destinationDirectory = "D:\"
 
 # Perform the copy operation for all files and subdirectories in the source directory
 try {

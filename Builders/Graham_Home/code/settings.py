@@ -1,0 +1,30 @@
+import board
+
+# Robot hardware settings
+
+# Pin connected to piezo buzzer
+PIEZO_PIN = board.GP22
+
+# Pins connected to DC motors (swap variable names if your motors are connected differently)
+RIGHT_MOTOR_PIN_A = board.GP11
+RIGHT_MOTOR_PIN_B = board.GP10
+LEFT_MOTOR_PIN_A = board.GP9
+LEFT_MOTOR_PIN_B = board.GP8
+
+# Pin connected to NeoPixels
+NEO_PIXEL_PIN = board.GP18
+
+# Pins connected to buttons
+BUTTON_1_PIN = board.GP20
+BUTTON_2_PIN = board.GP21
+
+# Pins connected to TOF sensors
+LEFT_EDGE_SENSOR_PIN = board.GP5
+RIGHT_EDGE_SENSOR_PIN = board.GP26
+TOF_LEFT_I2C_PINS = (board.GP17, board.GP16)
+TOF_RIGHT_I2C_PINS = (board.GP3, board.GP2)
+I2C_LEFT_TOGGLE_PIN = board.GP4
+I2C_RIGHT_TOGGLE_PIN = board.GP6
+
+# Maximum enemy targeting range
+MAX_DISTANCE = 300 #770
