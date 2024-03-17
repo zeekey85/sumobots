@@ -1,6 +1,9 @@
 # *************************************************
 # Sumo Bot Firmware
 # *************************************************
+import time
+
+import analogio
 import digitalio
 import simpleio
 from time import sleep
@@ -15,13 +18,10 @@ from settings import *
 
 
 # Robot states
-STARTUP = 0  # Startup sequence
-DISARMED = 1  # Waiting for button press
-ARMED = 2  # Waiting for button release
-COUNTDOWN = 3  # Counting down to fight
-FIGHTING = 4  # Fight mode
-LOST = 5  # Bot has lost the match
-WON = 6  # Bot has won the match
+DISARMED = 0  # Waiting for button press
+ARMED = 1  # Waiting for button release
+COUNTDOWN = 2  # Counting down to fight
+FIGHTING = 3  # Fight mode
 
 class SumoBotBase:
     """
@@ -91,18 +91,28 @@ class SumoBotBase:
         # Create left side TOF sensor using default address
         self.tof_left = VL53L0X(self.i2c_left, address=0x29)
 
+        # Create battery voltage analog input
+        self.battery_analog_in = analogio.AnalogIn(BATTERY_VOLTAGE_PIN)
+
         # Set initial state
-        self.state = STARTUP
+        self.state = DISARMED
 
     def run(self):
         """
         Sumo bot main execution loop.
         """
+        leds_off = True
         while True:
-            if self.state == STARTUP:
-                self.state = DISARMED
-            elif self.state == DISARMED:
-                self.pixels.fill(0xFF0000)
+            if self.state == DISARMED:
+                if self.battery_low():
+                    if not leds_off:
+                        self.pixels.fill(0xFF0000)
+                    else:
+                        self.pixels.fill(0x000000)
+                    leds_off = not leds_off
+                    time.sleep(0.5)
+                else:
+                    self.pixels.fill(0xFF0000)
                 key_event = self.keypad.events.get()
                 if key_event and key_event.key_number == 0 and key_event.pressed:
                     self.state = ARMED
@@ -122,12 +132,7 @@ class SumoBotBase:
             elif self.state == FIGHTING:
                 self.pixels.fill(0)
                 self.fight()
-            elif self.state == LOST:
-                # TODO: How does the robot know if it has lost?
-                self.shut_down()
-            elif self.state == WON:
-                # TODO: How does the robot know if it has won?
-                self.shut_down()
+
 
     def fight(self):
         """
@@ -209,6 +214,12 @@ class SumoBotBase:
         self.i2c_left.deinit()
         self.i2c_right.unlock()
         self.i2c_right.deinit()
+
+    def battery_low(self):
+        """
+        Returns True if the battery voltage is below a preset threshold, False otherwise.
+        """
+        return self.battery_analog_in.value < BATTERY_VOLTAGE_THRESHOLD
 
 
 def set_motor_speed(motor: DCMotor, speed: float):

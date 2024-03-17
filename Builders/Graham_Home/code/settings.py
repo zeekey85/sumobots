@@ -26,5 +26,10 @@ TOF_RIGHT_I2C_PINS = (board.GP3, board.GP2)
 I2C_LEFT_TOGGLE_PIN = board.GP4
 I2C_RIGHT_TOGGLE_PIN = board.GP6
 
+# Pin for battery voltage reference path
+BATTERY_VOLTAGE_PIN = board.A3
+# Low battery threshold voltage
+BATTERY_VOLTAGE_THRESHOLD = 52500
+
 # Maximum enemy targeting range
 MAX_DISTANCE = 300 #770
