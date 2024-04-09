@@ -71,6 +71,7 @@ while True:
     # sample ToF sensors 2X and take highest reading to reduce spurious detects
     Right = max(ToFR.range, ToFR.range)
     Left = max(ToFL.range, ToFL.range)
+    print(Left," ",Right)
     
     #target ahead -- go for it
     if Right < 770 and Left < 770:
