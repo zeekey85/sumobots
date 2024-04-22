@@ -87,13 +87,7 @@ class GrahamSumoBot(SumoBotBase):
             else:
                 # Turn to the left
                 print("Spinning")
-                self.drive(left_speed=-0.5, right_speed=0.5, duration=0.25)
-
-    # def enemy_in_range_right(self):
-    #     return False
-    #
-    # def enemy_in_range_left(self):
-    #     return False
+                self.drive(left_speed=-1, right_speed=1, duration=0.05)
 
 if __name__ == "__main__":
     GrahamSumoBot().run()
