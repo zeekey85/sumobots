@@ -32,4 +32,8 @@ BATTERY_VOLTAGE_PIN = board.A3
 BATTERY_VOLTAGE_THRESHOLD = 52500
 
 # Maximum enemy targeting range
-MAX_DISTANCE = 300 #770
+MAX_DISTANCE = 600 #770
+
+# Time to charge forward before checking sensors
+CHARGE_INTERVAL = 0.05
+MAX_CHARGE = 2
