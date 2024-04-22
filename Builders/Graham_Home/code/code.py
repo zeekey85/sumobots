@@ -37,7 +37,7 @@ class GrahamSumoBot(SumoBotBase):
         # If only the right sensor is over the edge, turn to the left,
         # then drive straight backwards.
         elif self.right_edge_detected():
-            print("Backing to left")
+            print("Backing to left and turning around")
             self.drive(left_speed=0.5, right_speed=-0.5, duration=0.25)
             self.drive(left_speed=-1, right_speed=-1, duration=0.3)
             self.drive(left_speed=1, right_speed=-1, duration=0.4)
@@ -65,9 +65,8 @@ class GrahamSumoBot(SumoBotBase):
             self.stop()
             if charge_time >= MAX_CHARGE:
                 # Back up to charge again
-                print("Backing up away from opponent")
-
-                self.drive(left_speed=-1, right_speed=-0.7, duration=0.5)
+                print("Backing up and turning away from opponent")
+                self.drive(left_speed=-1, right_speed=-0.8, duration=0.7)
 
         # Check for enemy to right
         else:

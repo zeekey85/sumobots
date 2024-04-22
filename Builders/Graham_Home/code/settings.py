@@ -36,4 +36,4 @@ MAX_DISTANCE = 600 #770
 
 # Time to charge forward before checking sensors
 CHARGE_INTERVAL = 0.05
-MAX_CHARGE = 2
+MAX_CHARGE = 1
