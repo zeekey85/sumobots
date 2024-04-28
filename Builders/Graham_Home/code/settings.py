@@ -6,10 +6,10 @@ import board
 PIEZO_PIN = board.GP22
 
 # Pins connected to DC motors (swap variable names if your motors are connected differently)
-RIGHT_MOTOR_PIN_A = board.GP11
-RIGHT_MOTOR_PIN_B = board.GP10
-LEFT_MOTOR_PIN_A = board.GP9
-LEFT_MOTOR_PIN_B = board.GP8
+RIGHT_MOTOR_PIN_B = board.GP11
+RIGHT_MOTOR_PIN_A = board.GP10
+LEFT_MOTOR_PIN_A = board.GP8
+LEFT_MOTOR_PIN_B = board.GP9
 
 # Pin connected to NeoPixels
 NEO_PIXEL_PIN = board.GP18
@@ -32,4 +32,8 @@ BATTERY_VOLTAGE_PIN = board.A3
 BATTERY_VOLTAGE_THRESHOLD = 52500
 
 # Maximum enemy targeting range
-MAX_DISTANCE = 300 #770
+MAX_DISTANCE = 600 #770
+
+# Time to charge forward before checking sensors
+CHARGE_INTERVAL = 0.05
+MAX_CHARGE = 1
