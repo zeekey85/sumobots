@@ -6,10 +6,10 @@ import board
 PIEZO_PIN = board.GP22
 
 # Pins connected to DC motors (swap variable names if your motors are connected differently)
-RIGHT_MOTOR_PIN_A = board.GP11
-RIGHT_MOTOR_PIN_B = board.GP10
-LEFT_MOTOR_PIN_A = board.GP9
-LEFT_MOTOR_PIN_B = board.GP8
+RIGHT_MOTOR_PIN_B = board.GP11
+RIGHT_MOTOR_PIN_A = board.GP10
+LEFT_MOTOR_PIN_A = board.GP8
+LEFT_MOTOR_PIN_B = board.GP9
 
 # Pin connected to NeoPixels
 NEO_PIXEL_PIN = board.GP18
