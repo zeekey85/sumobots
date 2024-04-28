@@ -164,13 +164,13 @@ class SumoBotBase:
         """
         Returns True if the edge has been crossed by the left sensor, False otherwise.
         """
-        return self.edge_left.value
+        return not self.edge_left.value
 
     def right_edge_detected(self):
         """
         Returns True if the edge has been crossed by the right sensor, False otherwise.
         """
-        return self.edge_right.value
+        return not self.edge_right.value
 
     def right_distance(self):
         """
