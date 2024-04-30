@@ -8,5 +8,5 @@ Illustrated assembly instructions can be found in the "assembly instructions.pdf
 
 The Maker Pi board should be running CircuitPython (it ships this way) and will need the code files in the code folder copied to it.
 
-All material in this archive except the adafruit_vl53l0x.py file is CC0 "no rights reserved." adafruit_vl53l0x.py has a MIT license.
+All material in this archive except the adafruit_vl53l0x.py file is CC0 "no rights reserved." adafruit_vl53l0x.py has a MIT license.  
 Send any questions to: bill@tinkerfam.net
