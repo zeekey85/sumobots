@@ -12,7 +12,7 @@ Turn on your Maker Pi and press buttons until you find the one that turns the li
 ## How to customize
 Change the `MAX_DISTANCE` setting to change the maximum distance at which your bot will detect enemies.
 
-*Coming Soon*
+#### *Coming Soon*
 Change the `TIMING_*` settings to change the duration of various robot actions.
 
 ## Advanced customization
