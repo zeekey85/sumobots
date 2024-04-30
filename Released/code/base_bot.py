@@ -12,7 +12,6 @@ import neopixel
 import pwmio
 from adafruit_vl53l0x import VL53L0X
 from adafruit_motor.motor import DCMotor
-from melodies import note_frequencies
 import keypad
 from settings import *
 
@@ -29,7 +28,7 @@ class SumoBotBase:
     robot initialization and control, but intentionally has no fighting routine.
     To use this class to control your sumo bot, create your own subclass of
     this class and define a fight() method for it.
-    See the GrahamSumoBot class in the code.py file for an example.
+    See the BasicSumoBot class in the code.py file for an example.
     """
 
     def __init__(self):
@@ -164,13 +163,13 @@ class SumoBotBase:
         """
         Returns True if the edge has been crossed by the left sensor, False otherwise.
         """
-        return self.edge_left.value
+        return not self.edge_left.value
 
     def right_edge_detected(self):
         """
         Returns True if the edge has been crossed by the right sensor, False otherwise.
         """
-        return self.edge_right.value
+        return not self.edge_right.value
 
     def right_distance(self):
         """
