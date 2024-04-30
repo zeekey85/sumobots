@@ -6,11 +6,7 @@ Stl files for 3D printing the four body parts are included.
 
 Illustrated assembly instructions can be found in the "assembly instructions.pdf" file.
 
-The Maker Pi board should be running CircuitPython (it ships this way) and will need the following software installed:
-adafruit_vl53l0x.py
-[remainder to be posted]
-These files will be included here. 
-
+The Maker Pi board should be running CircuitPython (it ships this way) and will need the code files in the code folder copied to it.
 
 All material in this archive except the adafruit_vl53l0x.py file is CC0 "no rights reserved." adafruit_vl53l0x.py has a MIT license.
 Send any questions to: bill@tinkerfam.net
