@@ -1,12 +1,14 @@
+import random
+import time
 from time import sleep
 
 from base_bot import SumoBotBase
 from settings import *
 
 
-class BasicSumoBot(SumoBotBase):
+class SimpleSumoBot(SumoBotBase):
     """
-    Basic implementation of the sumo bot fighting routine.
+    An implementation of the sumo bot fighting routine.
     Other botmasters may define their own SumoBot classes which extend SumoBotBase,
     and add their own fight() method with their own personal fighting strategy.
     """
@@ -42,51 +44,54 @@ class BasicSumoBot(SumoBotBase):
             self.drive(left_speed=1, right_speed=-1, duration=0.4)
 
         # ******************************
-        # 2. Scan for enemy and charge it!
+        # 2. Scan for opponent and charge it!
         # ******************************
 
-        # Check for enemy straight ahead
+        # Check for opponent straight ahead
         charge_time = 0
-        if self.enemy_in_range_right() and self.enemy_in_range_left():
+        if self.opponent_in_range_right() and self.opponent_in_range_left():
             # Charge!
             print("Charging boldly forward")
-            charge_time = 0
-            # TODO: Full speed lifts up edge sensors & gives false positive for edge - fix me
-            self.drive(right_speed=0.7, left_speed=0.7)
+            charge_start_time = time.monotonic()
+            self.drive(right_speed=MAX_SPEED, left_speed=MAX_SPEED)
             while (
-                self.enemy_in_range_right()
-                and self.enemy_in_range_left()
-                and not (self.right_edge_detected() or self.left_edge_detected())
-                and charge_time < MAX_CHARGE
+                    self.opponent_in_range_right()
+                    and self.opponent_in_range_left()
+                    and not (self.right_edge_detected() or self.left_edge_detected())
+                    and time.monotonic() - charge_start_time < MAX_CHARGE_TIME
             ):
                 sleep(CHARGE_INTERVAL)
                 charge_time += CHARGE_INTERVAL
             self.stop()
-            if charge_time >= MAX_CHARGE:
-                # Back up to charge again
+            if time.monotonic() - charge_start_time >= MAX_CHARGE_TIME:
                 print("Backing up and turning away from opponent")
-                self.drive(left_speed=-1, right_speed=-0.8, duration=0.7)
-
-        # Check for enemy to right
+                if random.randint(0, 1):
+                    self.drive(left_speed=-0.7, right_speed=-0.3, duration=BACK_AWAY_TIME)
+                else:
+                    self.drive(left_speed=-0.3, right_speed=-0.7, duration=BACK_AWAY_TIME)
+        # Check for opponent to right
         else:
             right_distance = self.right_distance()
             left_distance = self.left_distance()
             if right_distance < MAX_DISTANCE:
                 print("Looking right")
-                # Turn to the right - set turn duration inversely proportional to enemy distance
-                self.drive(left_speed=0.5, right_speed=-0.5, duration=0.2*((MAX_DISTANCE-right_distance)/MAX_DISTANCE))
+                # Turn to the right - set turn duration inversely proportional to opponent distance
+                self.drive(left_speed=TURN_SPEED, right_speed=-TURN_SPEED, duration=0.2*((MAX_DISTANCE-right_distance)/MAX_DISTANCE))
 
-            # Check for enemy to left
+            # Check for opponent to left
             elif left_distance < MAX_DISTANCE:
                 print("Looking left")
-                # Turn to the left - set turn duration inversely proportional to enemy distance
-                self.drive(left_speed=-0.5, right_speed=0.5, duration=0.2*((MAX_DISTANCE-left_distance)/MAX_DISTANCE))
+                # Turn to the left - set turn duration inversely proportional to opponent distance
+                self.drive(left_speed=-TURN_SPEED, right_speed=TURN_SPEED, duration=0.2*((MAX_DISTANCE-left_distance)/MAX_DISTANCE))
 
-            # Spin and look for enemy
+            # Spin and look for opponent
             else:
-                # Turn to the left
+                # Turn to the left or right randomly
                 print("Spinning")
-                self.drive(left_speed=-1, right_speed=1, duration=0.05)
+                if random.randint(0,1):
+                    self.drive(left_speed=-TURN_SPEED, right_speed=TURN_SPEED, duration=TURN_DURATION)
+                else:
+                    self.drive(left_speed=TURN_SPEED, right_speed=-TURN_SPEED, duration=TURN_DURATION)
 
 if __name__ == "__main__":
-    BasicSumoBot().run()
+    SimpleSumoBot().run()

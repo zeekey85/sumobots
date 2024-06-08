@@ -1,19 +1,17 @@
 # Sumo Bot
 
 ## Initial setup
-Open `settings.py` and review the pin assignments there. Change any pin values if your hardware is connected than the default settings.
+Open `settings.py` and review the "Robot hardware settings" section. Change any pin values if your hardware is connected differently than the default settings.
 
 ## Installation instructions
 Copy the files `base-bot.py`, `code.py`, `adafruit_vl53l0x.mpy`, and `settings.py` to your MakerPi to get a working sumo bot.
 
 ## How to use
 Turn on your Maker Pi and press buttons until you find the one that turns the lights from red to yellow. Your bot is now armed. Release the button to enter FIGHT MODE!
+**Note:** A blinking red light at startup, or a steady orange light in fight mode, indicates a low battery.
 
 ## How to customize
-Change the `MAX_DISTANCE` setting to change the maximum distance at which your bot will detect enemies.
-
-#### *Coming Soon*
-Change the `TIMING_*` settings to change the duration of various robot actions.
+Change values in the "Settings that control fight mode parameters" section of `settings.py` to make adjustments to your robot's fighting strategy.
 
 ## Advanced customization
 Modify the `fight()` method in code.py to change your robot's fighting strategy.
