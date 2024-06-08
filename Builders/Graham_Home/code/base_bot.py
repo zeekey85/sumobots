@@ -12,7 +12,6 @@ import neopixel
 import pwmio
 from adafruit_vl53l0x import VL53L0X
 from adafruit_motor.motor import DCMotor
-from melodies import note_frequencies
 import keypad
 from settings import *
 
@@ -125,7 +124,7 @@ class SumoBotBase:
                 self.pixels.fill(0x00FF00)
                 simpleio.tone(
                     pin=self.piezo,
-                    frequency=note_frequencies.get("C5"),
+                    frequency=523.25,
                     duration=0.3,
                 )
                 leds_on = True
