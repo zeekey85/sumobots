@@ -29,7 +29,7 @@ class SumoBotBase:
     robot initialization and control, but intentionally has no fighting routine.
     To use this class to control your sumo bot, create your own subclass of
     this class and define a fight() method for it.
-    See the GrahamSumoBot class in the code.py file for an example.
+    See the SimpleSumoBot class in the code.py file for an example.
     """
 
     def __init__(self):
@@ -101,15 +101,15 @@ class SumoBotBase:
         """
         Sumo bot main execution loop.
         """
-        leds_off = True
+        leds_on = False
         while True:
             if self.state == DISARMED:
                 if self.battery_low():
-                    if not leds_off:
+                    if leds_on:
                         self.pixels.fill(0xFF0000)
                     else:
                         self.pixels.fill(0x000000)
-                    leds_off = not leds_off
+                    leds_on = not leds_on
                     time.sleep(0.5)
                 else:
                     self.pixels.fill(0xFF0000)
@@ -128,9 +128,20 @@ class SumoBotBase:
                     frequency=note_frequencies.get("C5"),
                     duration=0.3,
                 )
+                leds_on = True
+                for _ in range(10):
+                    if leds_on:
+                        self.pixels.fill(0x00FF00)
+                    else:
+                        self.pixels.fill(0x000000)
+                    leds_on = not leds_on
+                    sleep(0.5)
                 self.state = FIGHTING
             elif self.state == FIGHTING:
-                self.pixels.fill(0)
+                if self.battery_low():
+                    self.pixels.fill(0xFF4500)
+                else:
+                    self.pixels.fill(0)
                 self.fight()
 
 
@@ -190,14 +201,14 @@ class SumoBotBase:
         reading_2 = self.tof_left.range
         return max(reading_1, reading_2)
 
-    def enemy_in_range_right(self):
+    def opponent_in_range_right(self):
         """
         Returns True if the right side TOF sensor detects an obstacle within
         the maximum detection range, False otherwise.
         """
         return self.right_distance() < MAX_DISTANCE
 
-    def enemy_in_range_left(self):
+    def opponent_in_range_left(self):
         """
         Returns True if the left side TOF sensor detects an obstacle within
         the maximum detection range, False otherwise.
