@@ -86,9 +86,9 @@ class SimpleSumoBot(SumoBotBase):
 
             # Spin and look for opponent
             else:
-                # Turn to the left or right randomly
+                # Turn to the left or right
                 print("Spinning")
-                if random.randint(0,1):
+                if self.spin_right:
                     self.drive(left_speed=-TURN_SPEED, right_speed=TURN_SPEED, duration=TURN_DURATION)
                 else:
                     self.drive(left_speed=TURN_SPEED, right_speed=-TURN_SPEED, duration=TURN_DURATION)

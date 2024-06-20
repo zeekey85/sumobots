@@ -1,6 +1,7 @@
 # *************************************************
 # Sumo Bot Firmware
 # *************************************************
+import random
 import time
 
 import analogio
@@ -95,6 +96,9 @@ class SumoBotBase:
 
         # Set initial state
         self.state = DISARMED
+
+        # Decide if bot will spin to the left or to the right
+        self.spin_right = bool(random.randint(0, 1))
 
     def run(self):
         """
