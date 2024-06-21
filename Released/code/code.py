@@ -5,7 +5,7 @@ from time import sleep
 from base_bot import SumoBotBase
 from settings import *
 
-
+#Just figuring this github stuff out
 class SimpleSumoBot(SumoBotBase):
     """
     An implementation of the sumo bot fighting routine.
